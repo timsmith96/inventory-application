@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+  h1= title
+
+  form(method='POST' action=`${item.url}/update`)
+    label(for='name') Item: 
+    input#name(type='text', value=item.name name='name') 
+    label(for='description') Description:
+    textarea#name(type='text', name='description' rows='10' cols='30') #{item.description}
+    label(for='price') Price: £
+    input(type='number', step=".01" name='price' min='0.01' max='1000' value=item.price) 
+    label(for='price') Number in stock:
+    input(type='number', name='number_in_stock' min='0' max='50' value=item.number_in_stock) 
+    label Category: 
+      select(name='category')
+        each category in categories 
+          option(id=category._id, value=category._id selected=itemCategory._id == category.id) #{category.name}
+    button(type='submit') Submit
+
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
+
+  form(method='POST' action=item.url + '/delete')
+    button(type='submit') Delete item
+
+  p back to item: 
+    a(href=item.url) back

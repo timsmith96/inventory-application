@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+  h1= title
+
+  p This is the category page for #{title}. Here is the description: 
+    p #{category.description}
+
+  p There are #{category_items.length} items in this category:
+
+
+  ul
+    each item in category_items
+      li
+        a(href=item.url) #{item.name}
+
+  p
+    a(href=category.url + '/update') edit category
+  a(href='/') back to home page

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  h1= title
+
+  p This is the item page for #{title}. Here is some more information about it: 
+
+  ul
+    li #{item.description}
+    li £#{item.price}
+    li Currently #{item.number_in_stock} in stock
+    li Belongs to #{category.name} category
+
+  p click to update item: 
+    a(href=`${item.url}/update`) update item
+
+  a(href=category.url) back to #{category.name.toLowerCase()} category
+
+
+
