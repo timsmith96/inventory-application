@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const Item = require('./models/item');
+require('dotenv').config();
+
+console.log(process.env);
 
 var indexRouter = require('./routes/index');
 
@@ -11,8 +14,7 @@ var app = express();
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-const dev_db_url =
-  'mongodb+srv://teapot00222:tgEAEMTEiCUdZ4K8@cluster0.nppr2gw.mongodb.net/inventory_application?retryWrites=true&w=majority';
+const dev_db_url = process.env.MONGO_DB;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
